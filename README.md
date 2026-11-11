@@ -1,5 +1,7 @@
 # shanghe000 · Open-source workshop
 
+![Project cover — xuan jing](docs/images/cover.svg)
+
 这里存放个人开源项目的默认贡献规范、反馈表单与维护手册。
 
 - [开源维护手册](docs/PLAYBOOK.md)：从新项目到日常维护。
