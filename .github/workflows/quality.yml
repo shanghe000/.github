@@ -18,3 +18,4 @@ jobs:
         with:
           persist-credentials: false
       - run: python3 scripts/check_repository.py
+      - run: python3 -m unittest discover -s tests
