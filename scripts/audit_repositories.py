@@ -8,8 +8,17 @@ import subprocess
 import urllib.parse
 
 
-def gh(*args):
-    return json.loads(subprocess.check_output(['gh', *args], text=True))
+def gh(*args, allow_empty=False):
+    result = subprocess.run(['gh', *args], text=True, capture_output=True)
+    if result.returncode:
+        try:
+            error = json.loads(result.stdout)
+        except json.JSONDecodeError:
+            error = {}
+        if allow_empty and error.get('message', '').lower().rstrip('.') == 'git repository is empty':
+            return None
+        raise RuntimeError(f'GitHub read failed: {result.stderr.strip()}')
+    return json.loads(result.stdout)
 
 
 def cell(value):
@@ -33,11 +42,12 @@ def main():
             missing.append('补主题')
         if not repo.get('license'):
             missing.append('确定许可证')
-        if repo['size'] == 0:
+        # Repository size is cached and can remain zero after the initial push.
+        branch = urllib.parse.quote(repo['default_branch'], safe='')
+        tree = gh('api', f"repos/{owner}/{repo['name']}/git/trees/{branch}?recursive=1", allow_empty=True)
+        if tree is None:
             missing.append('空仓库：补最小内容或决定用途')
         else:
-            branch = urllib.parse.quote(repo['default_branch'], safe='')
-            tree = gh('api', f"repos/{owner}/{repo['name']}/git/trees/{branch}?recursive=1")
             paths = [entry['path'] for entry in tree['tree']]
             if tree.get('truncated'):
                 missing.append('目录过大：以下缺项需人工确认')
