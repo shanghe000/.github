@@ -4,7 +4,7 @@
 
 - [开源维护手册](docs/PLAYBOOK.md)：从新项目到日常维护。
 - [开源项目模板](https://github.com/shanghe000/open-source-starter)：复制后即可开始。
-- [贡献指南](CONTRIBUTING.md) · [安全政策](SECURITY.md)。
+- [贡献指南](CONTRIBUTING.md) · [行为规范](CODE_OF_CONDUCT.md) · [安全政策](SECURITY.md)。
 - [个人主页](https://github.com/shanghe000)。
 
 ## 如何生效
