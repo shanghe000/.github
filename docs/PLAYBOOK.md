@@ -19,7 +19,7 @@
 或在模板的本地目录运行：
 
 ```sh
-python3 scripts/new_project.py my-project --description "一句话说明解决什么问题" --visibility public
+python3 scripts/new_project.py my-project --description "一句话说明解决什么问题" --visibility private
 ```
 
 脚本创建仓库、复制模板并修改 README 标题，保留 GitHub CLI 当前登录身份；默认私有，公开需要明确选择。
@@ -106,3 +106,11 @@ Job Filter 是当前的接入实例，包含合成样例、源文件保护、三
 - [Anthony Fu 的贡献指南](https://github.com/antfu/contribute)：一致的开发和发布习惯。
 - [Sindre Sorhus 的主页](https://github.com/sindresorhus)：个人风格与实际作品直接关联。
 - [GitHub 开源指南](https://opensource.guide/starting-a-project/)：项目说明、许可和参与方式。
+
+## 导入已有项目
+
+导入与从模板新建执行相同的发布标准：先保持私有，接入模板的 Publication readiness、贡献和安全文档，再审阅整个文件树、提交历史、图片和生成产物。文档只描述项目用途、使用、配置、架构与真实限制；个人工作环境和内部交接记录不属于对外材料。
+
+全历史凭据扫描必须独立运行，不能复用未经审阅的扫描例外。替换文件后重新验证项目完整性；不能更新摘要掩盖不可重现的构建。缺少整体许可或第三方分发权限时暂不公开。
+
+模板不是账号级自动策略：GitHub API 或其他工具创建的仓库不会自动继承文件、检查和分支规则。每个导入项目都必须明确接入，私有仓库分支规则还受账号计划限制。
